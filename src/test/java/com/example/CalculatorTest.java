@@ -1,7 +1,7 @@
 package com.example;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The CalculatorTest class contains unit tests for the Calculator class.
@@ -36,9 +36,12 @@ public class CalculatorTest {
         assertEquals(2, result, 0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testDivisionByZero() {
         Calculator calculator = new Calculator();
-        calculator.divide(5, 0);  // Should throw exception
+        // Using assertThrows to check that an exception is thrown
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculator.divide(5, 0);
+        });
     }
 }
