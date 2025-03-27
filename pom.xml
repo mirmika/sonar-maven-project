@@ -9,6 +9,16 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        
+        <!-- SonarQube Configuration -->
+        <sonar.projectKey>simple-node-app-cicd</sonar.projectKey>
+        <sonar.projectName>simple-node-app-cicd</sonar.projectName>
+        <sonar.host.url>${env.SONAR_HOST_URL}</sonar.host.url>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -22,18 +32,13 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.sonarsource.analyzer-commons/sonar-analyzer-commons -->
-<dependency>
-    <groupId>org.sonarsource.analyzer-commons</groupId>
-    <artifactId>sonar-analyzer-commons</artifactId>
-    <version>2.16.0.3141</version>
-</dependency>
+        <!-- Sonar Maven Plugin -->
+        <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>5.1.0.4751</version>
+        </dependency>
     </dependencies>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
 
     <build>
         <plugins>
@@ -59,11 +64,12 @@
                     </archive>
                 </configuration>
             </plugin>
-             <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>5.1.0.4751</version>
-        </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>5.1.0.4751</version>
+            </plugin>
         </plugins>
     </build>
 
